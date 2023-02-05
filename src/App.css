@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+
+
+.main {
+  display: flex;
+  flex-direction: row;
+
+  gap: 5px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto
+}
+
+.input-div {
+  background-color: wheat;
+  border: 3px solid violet;
+  display: inline-flex;
+  flex-direction: column;
+  padding-top: 200px;
+  gap: 10px;
+  width: 60%;
+
+}
+
+.child {
+  text-align: end;
+  padding-right: 20px;
+}
+
+
+
+.output-div {
+  background-color: skyblue;
+  border: 3px solid green;
+  width: 100%;
+}
