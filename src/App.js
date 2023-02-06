@@ -32,6 +32,7 @@ function App() {
   }
   const handleTradeShares = (e) => {
     setTradeShare(e.target.value);
+    setDalalEarnings(100-parseInt(e.target.value))
   }
   const handleDalalEarn = (e) => {
     setDalalEarnings(e.target.value);
@@ -53,8 +54,10 @@ function App() {
     let result = ((grossEarn() - referralEarn()) * miscFees) / 100
     return result
   }
+
+
   function tradeShareEarn() {
-    let result = ((grossEarn() - referralEarn() - miscFeesEarn()) * tradeshare) / 100
+    let result = ((grossEarn() - referralEarn() - miscFeesEarn()) * tradeshare) / 100;
     return result
   }
   function tradeEarn() {
@@ -62,6 +65,8 @@ function App() {
     return result
   }
   function dalalEarn() {
+    // let result = (grossEarn() - referralEarn() - miscFeesEarn())
+
     let result = ((grossEarn() - referralEarn() - miscFeesEarn()) * dalalEarnings) / 100
     return result
   }
@@ -72,27 +77,27 @@ function App() {
         <div className="input-div">
           <div className="child">
             <label >Trade Price: </label>
-            <input type="number" onChange={handleTradePrice} id="trade" />
+            <input type="number" onChange={handleTradePrice} id="trade" value={tradePrice} placeholder='Enter Number' />
           </div>
           <div className="child">
             <label >Commission % : </label>
-            <input type="number" id="commision" onChange={handleCommission} />
+            <input type="number" id="commision" onChange={handleCommission} value={commission} placeholder='Enter Number' />
           </div>
           <div className="child">
             <label >Referral % : </label>
-            <input type="number" id='referral' onChange={handleReferral} />
+            <input type="number" id='referral' onChange={handleReferral} value={referral} placeholder='Enter Number' />
           </div>
           <div className="child">
             <label >Misc. Fees % : </label>
-            <input type="number" onChange={handleMisc} />
+            <input type="number" onChange={handleMisc} value={miscFees} placeholder='10' />
           </div>
           <div className="child">
             <label >Trade Share % : </label>
-            <input type="number" onChange={handleTradeShares} />
+            <input type="number" onChange={handleTradeShares} value={tradeshare} placeholder='40' />
           </div>
           <div className="child">
             <label >Dalal % : </label>
-            <input type="number" onChange={handleDalalEarn} />
+            <input type="number" onChange={handleDalalEarn} value={dalalEarnings} placeholder='60' />
           </div>
         </div>
         <div className="output-div">
@@ -103,6 +108,28 @@ function App() {
           <p>Trade Share Earn:{tradeShareEarn()} </p>
           <p>Trade Earning:{tradeEarn()} </p>
           <p>Dalal Earning:{dalalEarn()} </p>
+
+          <div className="circle">
+          <div>
+            <svg width="200" height="200">
+                <g transform="rotate(-90 100 100)">
+                    <circle r="70" cx="100" cy="100" fill="transparent" stroke="lightgrey" stroke-width="2rem" stroke-dasharray="439.8" stroke-dashoffset="0"></circle>
+                    <circle r="70" cx="100" cy="100" fill="transparent" stroke="blue" stroke-width="2rem" stroke-dasharray="439.8" stroke-dashoffset={referralEarn()}>
+                    </circle>
+                    <circle r="70" cx="100" cy="100" fill="transparent" stroke="red" stroke-width="2rem" stroke-dasharray="439.8" stroke-dashoffset={tradeEarn()}>
+                    <circle r="70" cx="100" cy="100" fill="transparent" stroke="gray" stroke-width="2rem" stroke-dasharray="439.8" stroke-dashoffset={tradeShareEarn()}></circle>
+                    <circle r="70" cx="100" cy="100" fill="transparent" stroke="gray" stroke-width="2rem" stroke-dasharray="439.8" stroke-dashoffset={miscFeesEarn()}>
+                      
+                    </circle>
+                    </circle>
+                    <circle r="70" cx="100" cy="100" fill="transparent" stroke="green" stroke-width="2rem" stroke-dasharray="439.8" stroke-dashoffset={dalalEarn()}>
+                    </circle>
+                    
+                </g>
+                <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle"></text>
+            </svg>
+        </div>
+          </div>
 
         </div>
       </div>
