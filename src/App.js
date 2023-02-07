@@ -16,7 +16,10 @@ function App() {
   //for grap
   const [name, setName] = useState([]);
   const [val, setVal] = useState([]);
+  const [tradeEarnChild, settradeEarnChild] = useState([]);
+  const [tradeEarnChildVal, settradeEarnChildVal] = useState([]);
 
+  console.log(tradeEarnChild, tradeEarnChildVal)
 
 
 
@@ -66,16 +69,23 @@ function App() {
     let result = ((grossEarn() - referralEarn() - miscFeesEarn()) * dalalEarnings) / 100
     return result
   }
-  let values = [referralEarn(), dalalEarn(), tradeEarn()];
-  let ValuesName = ["Referral Earnings", "Dalal Earnings", "Trade Earnings"]
- 
+  let values = [dalalEarn(), tradeEarn(), referralEarn(),];
+  let valuesName = ["Dalal Earnings", "Trade Earnings", "Referral Earnings",]
+  let childName = ["Trade Share", "misc. Fees"];
+  let childValue = [tradeShareEarn(), miscFeesEarn()];
+
+  //  values[1]===childValue;
+  //  valuesName[1]===childName
+
   useEffect(() => {
     const getdata = async () => {
-      setName(ValuesName);
+      setName(valuesName);
       setVal(values);
+      settradeEarnChildVal(childValue)
+      settradeEarnChild(childName)
     }
     getdata();
-  },values);
+  }, values);
   return (
     <>
       <div className="main">
@@ -116,49 +126,81 @@ function App() {
 
         </div> */}
         <div className="output-div">
-        <div >
-          <h2 className="text-left">Earning Chart</h2>
-          <Chart
-            type="donut"
-            width={600}
-            height={300}
-            series={val}
+          <div >
+            <h2 className="text-left">Earning Chart</h2>
+            <Chart
+              type="donut"
+              width={600}
+              height={300}
+              series={val}
 
-            options={{
-              labels: name,
-              
-
-              plotOptions: {
-                pie: {
-                  donut: {
-                    labels: {
-                      show: true,
-                      total: {
+              options={{
+                labels: name,
+                plotOptions: {
+                  pie: {
+                    donut: {
+                      labels: {
                         show: true,
-                        showAlways: true,
-                        //formatter: () => '343',
-                        fontSize: 30,
-                        color: '#f90000',
+                        total: {
+                          show: true,
+                          showAlways: true,
+                          //formatter: () => '343',
+                          fontSize: 30,
+                          color: '#f90000',
+                        }
                       }
                     }
                   }
+
+                },
+
+                dataLabels: {
+                  enabled: true,
                 }
 
-              },
 
-              dataLabels: {
-                enabled: true,
-              }
+              }}
+
+            />
+            <Chart
+              type="donut"
+              width={600}
+              height={300}
+              series={tradeEarnChildVal}
+
+              options={{
+                labels: tradeEarnChild,
+                plotOptions: {
+                  pie: {
+                    donut: {
+                      labels: {
+                        show: true,
+                        total: {
+                          show: true,
+                          showAlways: true,
+                          //formatter: () => '343',
+                          fontSize: 30,
+                          color: '#f90000',
+                        }
+                      }
+                    }
+                  }
+
+                },
+
+                dataLabels: {
+                  enabled: true,
+                }
 
 
-            }}
+              }}
 
-          />
+            />
 
+          </div>
         </div>
       </div>
-      </div>
-      
+
 
 
     </>
