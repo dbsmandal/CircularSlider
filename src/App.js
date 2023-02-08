@@ -16,10 +16,8 @@ function App() {
   //for grap
   const [name, setName] = useState([]);
   const [val, setVal] = useState([]);
-  const [tradeEarnChild, settradeEarnChild] = useState([]);
-  const [tradeEarnChildVal, settradeEarnChildVal] = useState([]);
 
-  console.log(tradeEarnChild, tradeEarnChildVal)
+
 
 
 
@@ -69,23 +67,16 @@ function App() {
     let result = ((grossEarn() - referralEarn() - miscFeesEarn()) * dalalEarnings) / 100
     return result
   }
-  let values = [dalalEarn(), tradeEarn(), referralEarn(),];
-  let valuesName = ["Dalal Earnings", "Trade Earnings", "Referral Earnings",]
-  let childName = ["Trade Share", "misc. Fees"];
-  let childValue = [tradeShareEarn(), miscFeesEarn()];
-
-  //  values[1]===childValue;
-  //  valuesName[1]===childName
+  let values = [dalalEarn(), miscFeesEarn(),tradeShareEarn(), referralEarn(),];
+  let valuesName = ["Dalal Earnings",  "Misc Fees",  "Trade SHare", "Referral Earnings",]
 
   useEffect(() => {
     const getdata = async () => {
       setName(valuesName);
       setVal(values);
-      settradeEarnChildVal(childValue)
-      settradeEarnChild(childName)
     }
     getdata();
-  }, values);
+  },values);
   return (
     <>
       <div className="main">
@@ -104,7 +95,7 @@ function App() {
           </div>
           <div className="child">
             <label >Misc. Fees % : </label>
-            <input type="number" min="0" max="100" onChange={handleMisc} value={miscFees} placeholder='10' />
+            <input type="number" min="0" max="100" typeof="range" onChange={handleMisc} value={miscFees} placeholder='10' />
           </div>
           <div className="child">
             <label >Trade Share % : </label>
@@ -115,7 +106,7 @@ function App() {
             <input type="number" min="0" max="100" onChange={handleDalalEarn} value={dalalEarnings} placeholder='60' />
           </div>
         </div>
-        {/* <div className="output-div">
+        <div className="output-div">
           <p>Trade Price: ${tradePrice}</p>
           <p>Gross Earning :${grossEarn()}</p>
           <p>Referral Earning :{referralEarn()}</p>
@@ -124,20 +115,26 @@ function App() {
           <p>Trade Earning:{tradeEarn()} </p>
           <p>Dalal Earning:{dalalEarn()} </p>
 
-        </div> */}
+        </div>
         <div className="output-div">
           <div >
             <h2 className="text-left">Earning Chart</h2>
             <Chart
               type="donut"
-              width={600}
-              height={300}
+              width={800}
+              height={400}
               series={val}
+              
+
 
               options={{
                 labels: name,
+
+                
+                colors: ["#43A19E", "#7B43A1", "#7B43A1", "#FFFF00"],
                 plotOptions: {
                   pie: {
+                  
                     donut: {
                       labels: {
                         show: true,
@@ -149,7 +146,10 @@ function App() {
                           color: '#f90000',
                         }
                       }
+                      
+
                     }
+
                   }
 
                 },
@@ -162,41 +162,6 @@ function App() {
               }}
 
             />
-            <Chart
-              type="donut"
-              width={600}
-              height={300}
-              series={tradeEarnChildVal}
-
-              options={{
-                labels: tradeEarnChild,
-                plotOptions: {
-                  pie: {
-                    donut: {
-                      labels: {
-                        show: true,
-                        total: {
-                          show: true,
-                          showAlways: true,
-                          //formatter: () => '343',
-                          fontSize: 30,
-                          color: '#f90000',
-                        }
-                      }
-                    }
-                  }
-
-                },
-
-                dataLabels: {
-                  enabled: true,
-                }
-
-
-              }}
-
-            />
-
           </div>
         </div>
       </div>
