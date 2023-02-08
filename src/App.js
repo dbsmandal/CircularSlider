@@ -67,8 +67,8 @@ function App() {
     let result = ((grossEarn() - referralEarn() - miscFeesEarn()) * dalalEarnings) / 100
     return result
   }
-  let values = [dalalEarn(), miscFeesEarn(),tradeShareEarn(), referralEarn(),];
-  let valuesName = ["Dalal Earnings",  "Misc Fees",  "Trade SHare", "Referral Earnings",]
+  let values = [dalalEarn(), miscFeesEarn(), tradeShareEarn(), referralEarn(),];
+  let valuesName = ["Dalal Earnings", "Misc Fees", "Trade SHare", "Referral Earnings",]
 
   useEffect(() => {
     const getdata = async () => {
@@ -76,7 +76,7 @@ function App() {
       setVal(values);
     }
     getdata();
-  },values);
+  }, values);
   return (
     <>
       <div className="main">
@@ -106,7 +106,7 @@ function App() {
             <input type="number" min="0" max="100" onChange={handleDalalEarn} value={dalalEarnings} placeholder='60' />
           </div>
         </div>
-        <div className="output-div">
+        {/* <div className="output-div">
           <p>Trade Price: ${tradePrice}</p>
           <p>Gross Earning :${grossEarn()}</p>
           <p>Referral Earning :{referralEarn()}</p>
@@ -115,7 +115,7 @@ function App() {
           <p>Trade Earning:{tradeEarn()} </p>
           <p>Dalal Earning:{dalalEarn()} </p>
 
-        </div>
+        </div> */}
         <div className="output-div">
           <div >
             <h2 className="text-left">Earning Chart</h2>
@@ -124,17 +124,11 @@ function App() {
               width={800}
               height={400}
               series={val}
-              
-
-
               options={{
                 labels: name,
-
-                
                 colors: ["#43A19E", "#7B43A1", "#7B43A1", "#FFFF00"],
                 plotOptions: {
                   pie: {
-                  
                     donut: {
                       labels: {
                         show: true,
@@ -146,7 +140,6 @@ function App() {
                           color: '#f90000',
                         }
                       }
-                      
 
                     }
 
