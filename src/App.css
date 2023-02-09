@@ -54,7 +54,6 @@
 
 .input-div {
   background-color: wheat;
-  border: 3px solid violet;
   display: inline-flex;
   flex-direction: column;
   padding-top: 200px;
@@ -72,10 +71,14 @@
 
 .output-div {
   background-color: skyblue;
-  border: 3px solid green;
   width: 100%;
 }
+.data-div{
+  display: grid;
+  grid-template-columns: 33% 33% 33% ;
+  text-align: center;
 
+}
 /* .tradeEarn {
 
 } */

@@ -106,23 +106,14 @@ function App() {
             <input type="number" min="0" max="100" onChange={handleDalalEarn} value={dalalEarnings} placeholder='60' />
           </div>
         </div>
-        {/* <div className="output-div">
-          <p>Trade Price: ${tradePrice}</p>
-          <p>Gross Earning :${grossEarn()}</p>
-          <p>Referral Earning :{referralEarn()}</p>
-          <p>Misc.Fees Earn: {miscFeesEarn()}</p>
-          <p>Trade Share Earn:{tradeShareEarn()} </p>
-          <p>Trade Earning:{tradeEarn()} </p>
-          <p>Dalal Earning:{dalalEarn()} </p>
 
-        </div> */}
         <div className="output-div">
-          <div >
-            <h2 className="text-left">Earning Chart</h2>
+          <div>
+            <h2 style={{ paddingLeft: "5px" }}>Earning Chart</h2>
             <Chart
               type="donut"
               width={800}
-              height={400}
+              height={380}
               series={val}
               options={{
                 labels: name,
@@ -155,6 +146,18 @@ function App() {
               }}
 
             />
+          </div>
+          <div style={{ backgroundColor: "cyan", paddingTop: "5px" }}>
+            <p style={{ textAlign: "center", fontStyle: "oblique", fontWeight: "bolder" }}>Trade Price = ${tradePrice}</p>
+            <div className='data-div'>
+              <p>Gross Earning = ${grossEarn()}</p>
+              <p>Referral Earning = ${referralEarn()}</p>
+              <p>Dalal Earning = ${dalalEarn()} </p>
+              <p>Trade Share = ${tradeShareEarn()} </p>
+              <p>Trade Earning = ${tradeEarn()} </p>
+              <p>Misc.Fees = ${miscFeesEarn()}</p>
+
+            </div>
           </div>
         </div>
       </div>
