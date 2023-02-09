@@ -108,12 +108,12 @@ function App() {
         </div>
 
         <div className="output-div">
-          <div>
-            <h2 style={{ paddingLeft: "5px" }}>Earning Chart</h2>
+          <div className='graph-div'>
+            <h2 >Earning Chart</h2>
             <Chart
               type="donut"
-              width={800}
-              height={380}
+              width="100%"
+              height="100%"
               series={val}
               options={{
                 labels: name,
@@ -127,7 +127,7 @@ function App() {
                           show: true,
                           showAlways: true,
                           //formatter: () => '343',
-                          fontSize: 30,
+                          fontSize: "100%",
                           color: '#f90000',
                         }
                       }
@@ -147,17 +147,17 @@ function App() {
 
             />
           </div>
-          <div style={{ backgroundColor: "cyan", paddingTop: "5px" }}>
-            <p style={{ textAlign: "center", fontStyle: "oblique", fontWeight: "bolder" }}>Trade Price = ${tradePrice}</p>
-            <div className='data-div'>
+          <div className='data-main'>
+            <h4>Trade Price = ${tradePrice}</h4>
+            <div className='data-div' >
               <p>Gross Earning = ${grossEarn()}</p>
               <p>Referral Earning = ${referralEarn()}</p>
               <p>Dalal Earning = ${dalalEarn()} </p>
               <p>Trade Share = ${tradeShareEarn()} </p>
               <p>Trade Earning = ${tradeEarn()} </p>
               <p>Misc.Fees = ${miscFeesEarn()}</p>
-
             </div>
+
           </div>
         </div>
       </div>
